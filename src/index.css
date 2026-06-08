@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --chat--color--primary: #85c4eb;
+  --chat--color--primary-shade-50: #5fa9d6;
+  --chat--color--primary--shade-100: #4a8fb8;
+  --chat--color--secondary: #E8956F;
+  --chat--color-secondary-shade-50: #d97e54;
+  --chat--toggle--background: #85c4eb;
+  --chat--toggle--hover--background: #5fa9d6;
+  --chat--toggle--active--background: #4a8fb8;
+  --chat--header--background: #1A1A1A;
+  --chat--font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 @layer base {
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { @apply bg-background text-ink font-body; overflow-x: hidden; }

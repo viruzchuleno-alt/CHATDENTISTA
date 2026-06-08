@@ -23,8 +23,13 @@ import {
   X,
   Upload,
 } from 'lucide-react'
+import { createChat } from '@n8n/chat'
+import '@n8n/chat/style.css'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const CHATBOT_WEBHOOK_URL =
+  'https://drake14.app.n8n.cloud/webhook/9277d8da-ab6d-48be-a725-1cf3bd81f524/chat'
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '#home' },
@@ -1456,6 +1461,37 @@ function Footer() {
 }
 
 /* ----------------------------------------------------------------
+   ChatbotWidget — asistente virtual conectado a n8n
+---------------------------------------------------------------- */
+function ChatbotWidget() {
+  useEffect(() => {
+    const chat = createChat({
+      webhookUrl: CHATBOT_WEBHOOK_URL,
+      mode: 'window',
+      showWelcomeScreen: true,
+      initialMessages: [
+        '¡Hola! 👋',
+        'Soy el asistente virtual de la Dra. Catalina Morales. ¿En qué puedo ayudarte? Puedo orientarte sobre nuestros servicios, horarios o ayudarte a agendar tu hora.',
+      ],
+      i18n: {
+        en: {
+          title: 'Asistente Dra. Catalina Morales',
+          subtitle: 'Resolvemos tus dudas y te ayudamos a agendar tu hora, las 24 horas.',
+          footer: '',
+          getStarted: 'Iniciar conversación',
+          inputPlaceholder: 'Escribe tu consulta…',
+          closeButtonTooltip: 'Cerrar chat',
+        },
+      },
+    })
+
+    return () => chat.unmount()
+  }, [])
+
+  return null
+}
+
+/* ----------------------------------------------------------------
    App
 ---------------------------------------------------------------- */
 export default function App() {
@@ -1478,6 +1514,7 @@ export default function App() {
         <ContactForm />
       </main>
       <Footer />
+      <ChatbotWidget />
     </div>
   )
 }
